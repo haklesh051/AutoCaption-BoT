@@ -1,37 +1,16 @@
 import pyrogram, os, asyncio
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
-from pyrogram.enums import ParseMode
-from pyrogram.errors import FloodWait, MessageNotModified
 
-# ENV variables
-try:
-    api_id = int(os.environ.get("app_id", ""))
-except Exception as e:
-    print(f"⚠️ Api ID Invalid: {e}")
+try: app_id = int(os.environ.get("app_id", None))
+except Exception as app_id: print(f"⚠️ App ID Invalid {app_id}")
+try: api_hash = os.environ.get("api_hash", None)
+except Exception as api_id: print(f"⚠️ Api Hash Invalid {api_hash}")
+try: bot_token = os.environ.get("bot_token", None)
+except Exception as bot_token: print(f"⚠️ Bot Token Invalid {bot_token}")
+try: custom_caption = os.environ.get("custom_caption", "`{file_name}`")
+except Exception as custom_caption: print(f"⚠️ Custom Caption Invalid {custom_caption}")
 
-try:
-    api_hash = os.environ.get("api_hash", "")
-except Exception as e:
-    print(f"⚠️ API Hash Invalid: {e}")
-
-try:
-    bot_token = os.environ.get("bot_token", "")
-except Exception as e:
-    print(f"⚠️ Bot Token Invalid: {e}")
-
-try:
-    custom_caption = os.environ.get("custom_caption", "`{file_name}`")
-except Exception as e:
-    print(f"⚠️ Custom Caption Invalid: {e}")
-
-# Pyrogram Bot
 AutoCaptionBot = pyrogram.Client(
-    "AutoCaptionBot",
-    api_id=app_id,
-    api_hash=api_hash,
-    bot_token=bot_token
-)
-
+   name="AutoCaptionBot", api_id=app_id, api_hash=api_hash, bot_token=bot_token
 # Start message
 start_message = """
 <b>👋 Hello {}</b>
