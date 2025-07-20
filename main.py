@@ -5,9 +5,9 @@ from pyrogram.errors import FloodWait, MessageNotModified
 
 # ENV variables
 try:
-    app_id = int(os.environ.get("app_id", ""))
+    api_id = int(os.environ.get("app_id", ""))
 except Exception as e:
-    print(f"⚠️ App ID Invalid: {e}")
+    print(f"⚠️ Api ID Invalid: {e}")
 
 try:
     api_hash = os.environ.get("api_hash", "")
